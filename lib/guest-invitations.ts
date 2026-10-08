@@ -1,0 +1,5 @@
+import {seatingTables,seatsAt,type Plan} from './plan';
+import {receptionGuest} from './guest-profile';
+export type SeatInvitation={plan:Plan;guest:{name:string;tableId:string;seat:number};publishedAt:string};
+export function publicVenue(p:Plan):Plan{return {couple:p.couple,date:p.date,mood:p.mood,linen:p.linen,florals:p.florals,light:p.light,coupleTable:p.coupleTable,tables:p.tables.map(({id,name,shape,x,z,rotation,seats,sizeX,sizeZ})=>({id,name,shape,x,z,rotation,seats,sizeX,sizeZ})),guests:[],venue:p.venue?{estateDecor:p.venue.estateDecor,width:p.venue.width,depth:p.venue.depth,units:p.venue.units,dance:{x:p.venue.dance.x,z:p.venue.dance.z,width:p.venue.dance.width,depth:p.venue.dance.depth,rotation:p.venue.dance.rotation,visible:p.venue.dance.visible},elements:p.venue.elements.map(({id,kind,name,x,z,width,depth,rotation})=>({id,kind,name,x,z,width,depth,rotation}))}:undefined};}
+export function publishedSeating(p:Plan){return {plan:publicVenue(p),assignments:seatingTables(p).flatMap(t=>seatsAt(p,t).flatMap((g,seat)=>g&&receptionGuest(g)?[{id:g.id,name:g.name,tableId:t.id,seat}]:[]))};}

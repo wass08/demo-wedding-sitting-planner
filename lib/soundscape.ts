@@ -1,0 +1,9 @@
+/** Original, locally synthesized ambient score. No recordings or external requests. */
+export class Soundscape {
+ private ctx:AudioContext;private master:GainNode;private room:ConvolverNode;private timer:ReturnType<typeof setInterval>|null=null;private step=0;
+ constructor(){this.ctx=new AudioContext();this.master=this.ctx.createGain();this.master.gain.value=.32;this.master.connect(this.ctx.destination);this.room=this.ctx.createConvolver();const impulse=this.ctx.createBuffer(2,this.ctx.sampleRate*3,this.ctx.sampleRate);for(let channel=0;channel<2;channel++){const data=impulse.getChannelData(channel);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/data.length,3)*.22}this.room.buffer=impulse;const wet=this.ctx.createGain();wet.gain.value=.28;this.master.connect(this.room);this.room.connect(wet);wet.connect(this.ctx.destination)}
+ async start(){await this.ctx.resume();this.playPhrase();this.timer=setInterval(()=>this.playPhrase(),6400)}
+ volume(v:number){this.master.gain.setTargetAtTime(v,this.ctx.currentTime,.15)}
+ private playPhrase(){const chords=[[48,55,60,64,67,72],[45,52,57,60,64,69],[41,48,53,57,60,65],[43,50,55,59,62,67]];const notes=chords[this.step++%chords.length];notes.forEach((midi,i)=>{const at=this.ctx.currentTime+i*.8;for(const [harmonic,level] of [[1,.14],[2,.025],[3,.006]]){const oscillator=this.ctx.createOscillator(),gain=this.ctx.createGain();oscillator.type='sine';oscillator.frequency.value=440*2**((midi-69)/12)*harmonic;gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(level,at+.018);gain.gain.exponentialRampToValueAtTime(.0001,at+5.5);oscillator.connect(gain);gain.connect(this.master);oscillator.start(at);oscillator.stop(at+5.6);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect()}}})}
+ async stop(){if(this.timer)clearInterval(this.timer);this.timer=null;await this.ctx.close()}
+}
