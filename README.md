@@ -1,6 +1,6 @@
 # Vow — Wedding Atelier
 
-Live app: [Vow — Wedding Atelier](https://vow-garden-atelier.hamy-caovantruong.chatgpt.site)
+Live app: [Vow — Wedding Atelier](https://wedding.wawasensei.dev/)
 
 ## Hosting
 
