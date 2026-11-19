@@ -12,3 +12,13 @@
 @media(max-width:700px){.launch-nav nav{gap:10px}.launch-nav .launch-sound{display:flex!important}.launch-nav .launch-sound span{display:none}.launch-nav nav>a[href="#possibilities"]{display:none}.launch-nav-cta{font-size:12px;padding:11px}.launch-arrival{inset:120px 26px 80px}.launch-arrival h1{font-size:49px;letter-spacing:-1.8px}.launch-arrival p{font-size:13px;max-width:270px;line-height:1.7}.launch-arrival small{font-size:8px;letter-spacing:2px}.launch-explorer-title{left:24px;right:24px;top:155px}.launch-explorer-title h2{font-size:32px}.launch-explorer-title p{max-width:240px;line-height:1.6}.launch-exit{top:97px;right:24px;font-size:12px;padding:9px 13px}.launch-explorer-controls{left:24px;right:24px;bottom:28px;gap:19px}.launch-stops{gap:6px}.launch-stops button{padding:11px 9px;gap:6px;flex:1;justify-content:center;font-size:14px}.launch-stops button span{font-size:11px}.launch-explorer-controls>.launch-cta{position:static;justify-self:stretch}.launch-explorer-moods>span{max-width:none}.launch-time{max-width:none}.launch-time input{flex:1;width:100px}.launch-exploring .launch-scene{inset:0}.launch-exploring .launch-scrim{background:linear-gradient(0deg,#071c14fa,transparent 52%),linear-gradient(180deg,#0a1f1888,transparent 40%)}}
 
 .launch-arrival{transition:opacity .8s,transform .8s,visibility .8s}.launch:not(.launch-awaiting) .launch-arrival{opacity:0;transform:translateY(-18px);visibility:hidden;pointer-events:none}@media(prefers-reduced-motion:reduce){.launch-arrival{transition:none}}
+/* Caustic Lab studio credit */
+.launch-arrival small .launch-credit{display:block;width:max-content;margin:6px auto 0;padding:8px 4px;color:#d9d3bd;text-decoration:none;text-transform:uppercase;transition:color .2s}
+.launch-arrival small .launch-credit:hover{color:#e3c99e}
+.launch-footer small{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px}
+.launch-studio{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px}
+.launch-studio a{display:inline-block;padding:6px 0;color:#4d5a46}
+.launch-studio a:first-child{text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-size:10px}
+.launch-studio u{text-underline-offset:4px}
+.launch-studio a:hover{color:#233c2f}
+.launch-arrival small .launch-credit:focus-visible,.launch-studio a:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
